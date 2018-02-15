@@ -1,0 +1,71 @@
+import java.util.Arrays;
+import java.util.Scanner;
+public class WhatDoINeed {
+
+	public static void main(String[] args) {
+		Scanner input= new Scanner(System.in);
+		
+		int d=0;
+		// create the loop works as long as the int is positive 
+		do{
+		System.out.print("What average do you want from the course? ");
+		d =input.nextInt();
+		if (d<0) {
+			System.out.print("Goodbye");
+			System.exit(0);
+			}
+		
+		//The next integer will be the number of tests (including the final exam)
+		System.out.print("How many tests, including the final, are there? ");
+		int a =input.nextInt();
+		// Then declared test weight array which we get the user
+		int [] testWeight =new int [a];
+		System.out.print("Please provide the test weights:  ");
+		for(int i = 0;i<testWeight.length;i++) {
+			//  provide the percentage of exam weight from users
+		testWeight[i]=input.nextInt();
+		}
+		//System.out.println(Arrays.toString(testWeight));
+
+		int [] testGrades =new int [a-1];
+		System.out.print("Please provide the test grades out of 100: ");
+		for(int i = 0;i<testGrades.length;i++) {
+			//  provide the exam results except final results from users
+			testGrades[i]=input.nextInt();
+			}
+		System.out.println(Arrays.toString(testGrades));
+
+		double b=averageCalculate(testWeight,testGrades);
+		//System.out.println(b);
+		// formula which is showed below gives the desired final result formula
+		//first three exams average(with their percentage) + 
+		//(final grade* last test weight) divided 100 equal to desired average(d)
+		//(b+(X*testWeight[a-1])/100.0==d) 
+	
+		int finalExamGrade= (int) (100*(d-b)/testWeight[a-1]);
+		if(finalExamGrade<100) {
+		System.out.println("You can achieve an average of "+d+
+				" with exam grade of: " +finalExamGrade);
+		}
+		else {
+			System.out.println("It is impossible to achieve an average of "+ d);
+		}
+		System.out.println();
+		System.out.println();
+		}while(d>=0);
+	System.out.println("Goodbye");
+	}
+	  
+	
+	public static double averageCalculate(int []testWeight, int[]testgrades) {
+		double sumOf100= 0;
+		//gives sum of average except final
+		for(int i=0; i<testgrades.length;i++) {
+			sumOf100+=((testgrades[i]*testWeight[i])/100.0);
+		}
+		return sumOf100;
+	}
+}
+	
+
+
