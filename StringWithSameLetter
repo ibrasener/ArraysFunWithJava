@@ -1,0 +1,74 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class StringWithSameLetter {
+
+	public static void main(String[] args) {
+		Scanner input=new Scanner(System.in);
+		createArray();
+		
+	}
+	
+	public static void createArray(){
+		Scanner input=new Scanner(System.in);
+		int i =0;
+		String input1="";
+		String input2="";
+		while(true) {
+			System.out.print("Enter the first string: ");
+			//in any case string
+			input1= input.nextLine().toLowerCase().trim();
+			// terminate "end"
+		if (input1.equals("end")) {
+			break;
+		}	
+			
+			System.out.print("Enter the second string: ");
+			//in any case string
+			input2=input.nextLine().toLowerCase().trim();
+		if (stringSame(input1,input2)) {
+			System.out.println("The are the same");
+		}
+		else {
+			System.out.println("The are the different");
+		}
+		System.out.println();
+	}
+		System.out.println("\nGoodbye.");
+}
+	public static int[] countLetters(String index) {
+
+		// Declare and create an array of 26 int
+		int[] counts = new int[26];
+		// For each lowercase letter in the array, count it
+		for (int i = 0; i < index.length(); i++) {
+			//declared above 26 letters so 
+			//every letters check (char)index.charAt(i) -'a'
+			//++ and count the same letter
+			counts[(char)index.charAt(i) - 'a']++;
+		//System.out.println(counts[(char)index.charAt(i) - 'a']);
+		}
+		//System.out.println(Arrays.toString(counts));
+		return counts;
+	}
+	//boolean method
+	public static boolean stringSame(String s1,String s2) {
+		
+		int[] a1= countLetters(s1);
+		int[] a2= countLetters(s2);
+		// these two arrays declared the list example below
+		//if the numbers location and count match each other return true;
+		//[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+		//[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+		for(int i=0; i<a1.length;i++) {
+			// both of them has same length because of the letters(26)
+			//so we can use a1.length or a2.length doesnt matter 
+			if (a1[i]!=a2[i]) {
+				return false;
+			}
+		}		
+		return true;
+		
+	}
+}	
+	
