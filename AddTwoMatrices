@@ -1,0 +1,116 @@
+import java.util.Scanner;
+
+public class AddTwoMatrices {
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter matrix 1: ");
+        double[][] matrix1 = new double[3][3];
+        // declare the first square matrix
+        for (int i = 0; i < matrix1.length; i++) {
+            for (int k = 0; k < matrix1[i].length; k++)
+                matrix1[i][k] = input.nextDouble();
+        }
+
+        System.out.print("Enter matrix 2: ");
+        // declare the second square matrix
+        double[][] matrix2 = new double[3][3];
+        for (int i = 0; i < matrix2.length; i++) {
+            for (int k = 0; k < matrix2[i].length; k++)
+                matrix2[i][k] = input.nextDouble();
+        }
+        
+   double[][] addedMatrix = addMatrix(matrix1, matrix2);
+   // firstly declared column then inside the row for loop you can declared 
+   //matrix1 and matrix 2 
+        for (int row = 0; row < matrix1.length; row++) {
+
+            for (int column = 0; column < matrix1[row].length; column++) {
+                System.out.printf("%3.1f ", matrix1[row][column]);
+                //gives row and column then execute the other row 
+                if (row == 1 && column == 2) 
+                	// based 0 so column 2 last column of 3x3 matrix 
+                // string space and plus  because 3x3 matrix finish the column
+                	//thats why we are adding plus
+                	System.out.printf("%5s ", " + ");
+                else
+                	System.out.printf("%5s ", " ");
+            }
+            for (int column = 0; column < matrix2[row].length; column++) {
+                System.out.printf("%3.1f ", matrix2[row][column]);
+                if (row == 1 && column == 2) 
+                	// 3x3 martix finish the column thats why we are adding equal sign
+                	System.out.printf("%5s ", " = ");
+                else
+                	System.out.printf("%5s ", " ");
+
+            }
+            for (int k = 0; k < addedMatrix[row].length; k++) {
+                System.out.printf("%5.1f ", addedMatrix[row][k]);
+            }
+            System.out.println("");
+
+        }
+        System.out.println("\n");
+
+  double[][] subbedMatrix = subMatrix(matrix1, matrix2);
+  		//
+        for (int row = 0; row < matrix1.length; row++) {
+
+            for (int column = 0; column < matrix1[row].length; column++) {
+                // one decimal point %2.1f
+            		System.out.printf("%3.1f ", matrix1[row][column]);
+                
+                if (row == 1 && column == 2) 
+                	System.out.printf("%5s ", " - ");
+                else
+                	System.out.printf("%5s ", " ");
+            }
+            for (int column = 0; column < matrix2[row].length; column++) {
+                System.out.printf("%3.1f ", matrix2[row][column]);
+                if (row == 1 && column == 2) 
+                	System.out.printf("%5s ", " = ");
+                else 
+                	System.out.printf("%5s ", " ");
+
+            }
+            for (int k = 0; k < addedMatrix[row].length; k++) {
+                System.out.printf("%5.1f ", subbedMatrix[row][k]);
+            }
+            System.out.println();
+
+        }
+    }
+    // Create the method which is adding matrices 
+    public static double[][] addMatrix(double[][] a, double[][] b) {
+
+        double[][] addedMatrix = new double[a.length][a[0].length];
+        // gives the rows
+        for (int i = 0; i < a.length; i++) {
+        	//gives the columns
+        		for (int k = 0; k < a[0].length; k++) {
+            	// adding matrix1 and matrix2 
+                addedMatrix[i][k] = a[i][k] + b[i][k];
+            }
+        }
+
+        return addedMatrix;
+    }
+ // Create the method which is subbing matrices 
+    public static double[][] subMatrix(double[][] a, double[][] b) {
+
+        double[][] subbedMatrix = new double[a.length][a[0].length];
+      //gives the rows
+        for (int i = 0; i < a.length; i++) {
+        	//gives the columns
+        		for (int k = 0; k < a[0].length; k++) {
+        
+                subbedMatrix[i][k] = a[i][k] - b[i][k];
+            }
+        }
+
+        return subbedMatrix;
+    }
+}
+
